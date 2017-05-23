@@ -1,42 +1,42 @@
 <head>
 </head>
 <body>
-	<h1>People</h1>
-	<ul id="people"></ul>
-	<script type="text/javascript">
+  <h1>People</h1>
+  <ul id="people"></ul>
+  <script type="text/javascript">
 
-		function createNode(element) {
-			return document.createElement(element);
-		}
+    function createNode(element) {
+      return document.createElement(element);
+    }
 
-		function append(parent, el) {
-			return parent.appendChild(el);
-		}
+    function append(parent, el) {
+      return parent.appendChild(el);
+    }
 
-		const ul = document.getElementById('people');
-		const url = 'https://randomuser.me/api/?results=2';
+    const ul = document.getElementById('people');
+    const url = 'https://randomuser.me/api/?results=2';
 
-		function getData() {
-			fetch(url)
-				.then((resp) => resp.json())
-				.then(function(data) {
-					let people = data.results;
-					return people.map(function(author) {
-						let li = createNode('li'),
-							img = createNode('img'),
-							span = createNode('span');
-						img.src = author.picture.medium;
-						span.innerHTML = `${author.name.first} ${author.name.last}`;
-						append(li, img);
-						append(li, span);
-						append(ul, li);
-					})
-				})
-				.catch(function(error) {
-					console.log(error);
-				});
-		}
-		setInterval(getData, 2000);
+    function getData() {
+      fetch(url)
+        .then((resp) => resp.json())
+        .then(function(data) {
+          let people = data.results;
+          return people.map(function(author) {
+            let li = createNode('li'),
+              img = createNode('img'),
+              span = createNode('span');
+            img.src = author.picture.medium;
+            span.innerHTML = `${author.name.first} ${author.name.last}`;
+            append(li, img);
+            append(li, span);
+            append(ul, li);
+          })
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    }
+    setInterval(getData, 2000);
 
-	</script>
+  </script>
 </body>
